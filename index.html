@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <title>Domowy budżet</title>
+</head>
+<body>
+   
+    <p>
+    <center>
+            <img src="icons/icon3.png" alt="logo"></p>
+    </center>
+    </p>
+   
+     <div class="main">
+    <center>
+        <h1 id="reszta">Nie masz nic do wydania :(</h1>
+    </center>
+    </p>
+</div>
+     <div class="tabela" id="tabela">
+    <table>
+    <tr>
+        <th>
+            <h2>PRZYCHODY</h2>
+            <!-- nazwa przychodu -->
+             <form id="test">
+                <input 
+                    type="text" 
+                    id="przychod"
+                    class="name-input" 
+                    name="przychod" 
+                    required
+                    minlength="4" 
+                    maxlength="20" 
+                    placeholder="Nazwa przychodu">
+                <input
+                    type="number" 
+                    id="kwotaP" 
+                    name="kwotaP" 
+                    class="amount-input" 
+                    required
+                    minlength="1" 
+                    maxlength="5" 
+                    size="5"
+                    placeholder="Kwota">
+                <button type="button" class="dodajP">Dodaj</button>
+            
+            </form>
+            </th>
+            <th>
+                <h2>WYDATKI</h2>
+                <!-- nazwa wydatków -->
+                <form id="test2">
+                <input 
+                    class="name-output" 
+                    type="text" 
+                    id="wydatek" 
+                    name="wydatek" 
+                    required
+                    minlength="4" 
+                    maxlength="20" 
+                    size="20"
+                    placeholder="Nazwa wydatku">
+                <input
+                    class="amount-output"
+                    type="number" 
+                    id="kwotaW" 
+                    name="kwotaW" 
+                    required
+                    minlength="1" 
+                    maxlength="5" 
+                    size="5"
+                    placeholder="Kwota">
+                <button type="button" class="dodajW">Dodaj</button>
+            </th>
+        </tr>
+    </form>
+            <tr>
+            <th>
+            <!-- przychody -->
+                <h4 id="incomeList"></id></h4>
+            </th>
+    
+            <th>
+                <h4 id="spendList"></id></h4> 
+            </th>
+        </tr>
+        <tr id="PrzychodyWydatki">
+            <th>
+                <h3 id="sumaP">Suma przychodów: Brak</h3>
+            </th>
+            <th>
+                <h3 id="sumaW">Suma wydatków: Brak</h3>
+            </th>
+        </tr>
+
+        
+    
+
+
+    </form>
+ </table>   
+ </div>   
+
+
+
+
+
+   
+</body>
+<script src="index.js" type="module"></script>
+</html>
