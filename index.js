@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
 const przychody = [];
 const wydatki = [];
+let sumInc = 0;
+let sumOut = 0;
 
 function sumFn(arr) {
   return arr.reduce(
@@ -15,9 +17,17 @@ function sumFn(arr) {
   );
 }
 
-// function difrend() {
-//   return sumInc - sumOut;
-// }
+function difrend() {
+  const sum = sumInc - sumOut;
+  const reszta = document.querySelector("#reszta");
+  if (sum === 0) {
+    reszta.innerHTML = "Nie masz nic do wydania";
+  } else if (sum > 0) {
+    reszta.innerHTML = `Masz do wydania ${sum}`;
+  } else {
+    reszta.innerHTML = `Brakuje ${sum}`;
+  }
+}
 
 const addBtn = document.querySelector(".dodajP");
 addBtn.addEventListener("click", () => {
@@ -40,26 +50,23 @@ addBtn.addEventListener("click", () => {
   delBtn.textContent = "Usuń";
   delBtn.setAttribute("data-id", wartosc.id);
   newLi.appendChild(delBtn);
+
   const saveBtn = document.createElement("button");
   saveBtn.textContent = "Zapisz";
   saveBtn.setAttribute("data-id", wartosc.id);
   newLi.appendChild(saveBtn);
   document.getElementById("incomeList").appendChild(newLi);
+  sumInc = +sumFn(przychody);
+  difrend();
+  delBtn.addEventListener("click", () => {
+    document.getElementById("incomeList").removeChild(newLi);
+    sumInc = +sumFn(przychody);
+    difrend();
+  });
   przychody.push(+wartosc.amount);
-  // const lista = przychody.push([amountVal]);
-  const sumInc = +sumFn(przychody);
-  console.log(+sumInc);
+
   const sumaInc = document.getElementById("sumaP");
   sumaInc.innerText = `Suma przychodów ${+sumInc}`;
-
-  // sumaInc.innerText = `Suma przychodów ${+sumInc}`;
-  // if (przCh === 0) {
-  //   console.log("wnie masz nic do wydania");
-  // } else if (sumInc > 1) {
-  //   console.log("masz hasjsik");
-  // } else {
-  //   console.log("potrzeba kredyt");
-  // }
 });
 // to jest koniec przychodu
 const addBtnExp = document.querySelector(".dodajW");
@@ -94,11 +101,18 @@ addBtnExp.addEventListener("click", () => {
   document.getElementById("spendList").appendChild(newLi2);
   wydatki.push(+spend.amount);
 
-  const sumOut = +sumFn(wydatki);
-  console.log(+sumOut);
+  sumOut = +sumFn(wydatki);
+  // console.log(+sumOut);
   const sumaOut = document.getElementById("sumaW");
 
   sumaOut.innerText = `Suma wydatków ${+sumOut}`;
+  difrend();
+  delBtnExp.addEventListener("click", () => {
+    document.getElementById("spendList").removeChild(newLi2);
+
+    sumOut = +sumFn(wydatki);
+    difrend();
+  });
 });
 
 console.log("start");
