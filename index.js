@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 // };
 
 const przychody = [];
+console.log(przychody);
 const wydatki = [];
 let sumInc = 0;
 let sumOut = 0;
@@ -48,10 +49,11 @@ addBtn.addEventListener("click", () => {
   saveBtn.setAttribute("data-id", wartosc.id);
   saveBtn.setAttribute("style", "display:none");
   newLi.appendChild(saveBtn);
-  saveBtn.addEventListener("click", () => {
-    saveBtn.setAttribute("style", "display:none");
-    editBtn.setAttribute("style", "display:");
-  });
+  // saveBtn.addEventListener("click", () => {
+  //   saveBtn.setAttribute("style", "display:none");
+  //   editBtn.setAttribute("style", "display:");
+
+  // });
 
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edytuj";
@@ -65,8 +67,15 @@ addBtn.addEventListener("click", () => {
     input.type = "text";
     input.placeholder = `${wartosc.name}`;
     newLi.appendChild(input);
-
-    li.removeChild(newLi);
+    const inputAmount = document.createElement("input");
+    inputAmount.type = "number";
+    inputAmount.placeholder = `${wartosc.amount}`;
+    newLi.appendChild(inputAmount);
+    saveBtn.addEventListener("click", () => {
+      saveBtn.setAttribute("style", "display:none");
+      editBtn.setAttribute("style", "display:");
+      newLi.textContent = `${input.value} - ${inputAmount.value}`;
+    });
   });
 
   const delBtn = document.createElement("button");
@@ -77,14 +86,18 @@ addBtn.addEventListener("click", () => {
   document.getElementById("incomeList").appendChild(newLi);
   przychody.push(+wartosc.amount);
 
-  sumInc = +sumFn(przychody);
+  sumInc = sumFn(przychody);
   difrend();
 
   delBtn.addEventListener("click", () => {
     document.getElementById("incomeList").removeChild(newLi);
+    przychody.push(-wartosc.amount);
     sumInc = sumInc - wartosc.amount;
+    console.log(sumInc);
+    console.log(wartosc.amount);
     sumaInc.innerText = `Suma przychodów ${+sumInc} zł.`;
     difrend();
+    console.log(przychody);
   });
 
   const sumaInc = document.getElementById("sumaP");
