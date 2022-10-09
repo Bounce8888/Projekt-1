@@ -41,8 +41,24 @@ addBtn.addEventListener("click", () => {
     amount: amountVal,
     id: uuidv4(),
   };
+
   const newLi = document.createElement("li");
-  newLi.textContent = `${wartosc.name} - ${wartosc.amount}`;
+  const par = document.createElement("p");
+
+  par.textContent = `${wartosc.name} - ${wartosc.amount}`;
+  newLi.appendChild(par);
+  const input = document.createElement("input");
+  input.type = "text";
+  input.setAttribute("data-id", wartosc.id);
+  input.setAttribute("style", "display:none");
+  input.placeholder = `${wartosc.name}`;
+  newLi.appendChild(input);
+  const inputAmount = document.createElement("input");
+  inputAmount.type = "number";
+  inputAmount.placeholder = `${wartosc.amount}`;
+  inputAmount.setAttribute("data-id", wartosc.id);
+  inputAmount.setAttribute("style", "display:none");
+  newLi.appendChild(inputAmount);
 
   const saveBtn = document.createElement("button");
   saveBtn.textContent = "Zapisz";
@@ -50,8 +66,8 @@ addBtn.addEventListener("click", () => {
   saveBtn.setAttribute("style", "display:none");
   newLi.appendChild(saveBtn);
   // saveBtn.addEventListener("click", () => {
-  //   saveBtn.setAttribute("style", "display:none");
-  //   editBtn.setAttribute("style", "display:");
+  //   // saveBtn.setAttribute("style", "display:none");
+  //   // editBtn.setAttribute("style", "display:");
 
   // });
 
@@ -62,22 +78,49 @@ addBtn.addEventListener("click", () => {
   editBtn.addEventListener("click", () => {
     editBtn.setAttribute("style", "display:none");
     saveBtn.setAttribute("style", "display:");
-    console.log("klik");
-    const input = document.createElement("input");
-    input.type = "text";
-    input.placeholder = `${wartosc.name}`;
-    newLi.appendChild(input);
-    const inputAmount = document.createElement("input");
-    inputAmount.type = "number";
-    inputAmount.placeholder = `${wartosc.amount}`;
-    newLi.appendChild(inputAmount);
+    cancelBtn.setAttribute("style", "display:flex");
+    delBtn.setAttribute("style", "display:none");
+    input.setAttribute("style", "display:");
+    inputAmount.setAttribute("style", "display:flex");
+    let oldAmount = wartosc.amount;
+
+    console.log(oldAmount);
+
     saveBtn.addEventListener("click", () => {
       saveBtn.setAttribute("style", "display:none");
-      editBtn.setAttribute("style", "display:");
-      newLi.textContent = `${input.value} - ${inputAmount.value}`;
+      editBtn.setAttribute("style", "display:flex");
+      input.setAttribute("style", "display:none");
+      cancelBtn.setAttribute("style", "display:none");
+      delBtn.setAttribute("style", "display:flex");
+      inputAmount.setAttribute("style", "display:none");
+      let oldAmount = wartosc.amount;
+      console.log(oldAmount);
+      przychody.push(-wartosc.amount);
+      sumInc = sumInc - wartosc.amount;
+      przychody.push(+inputAmount.value);
+      sumInc = sumInc + inputAmount.value;
+      par.textContent = `${input.value} - ${inputAmount.value}`;
+      console.log(przychody);
+      sumInc = sumFn(przychody);
+      difrend();
+      console.log(przychody);
     });
   });
+  const cancelBtn = document.createElement("button");
+  cancelBtn.textContent = "Anuluj";
+  cancelBtn.setAttribute("data-id", wartosc.id);
+  cancelBtn.setAttribute("style", "display:none");
+  newLi.appendChild(cancelBtn);
+  cancelBtn.addEventListener("click", () => {
+    cancelBtn.setAttribute("style", "display:none");
+    delBtn.setAttribute("style", "display:flex");
+    saveBtn.setAttribute("style", "display:none");
+    input.setAttribute("style", "display:none");
+    inputAmount.setAttribute("style", "display:none");
+    editBtn.setAttribute("style", "display:flex");
 
+    console.log("klik2");
+  });
   const delBtn = document.createElement("button");
   delBtn.textContent = "Usuń";
   delBtn.setAttribute("data-id", wartosc.id);
@@ -129,7 +172,7 @@ addBtnExp.addEventListener("click", () => {
   newLi2.appendChild(saveBtnExp);
   saveBtnExp.addEventListener("click", () => {
     saveBtnExp.setAttribute("style", "display:none");
-    editBtnExp.setAttribute("style", "display:");
+    editBtnExp.setAttribute("style", "display:flex");
   });
 
   const editBtnExp = document.createElement("button");
@@ -138,7 +181,7 @@ addBtnExp.addEventListener("click", () => {
   newLi2.appendChild(editBtnExp);
   editBtnExp.addEventListener("click", () => {
     editBtnExp.setAttribute("style", "display:none");
-    saveBtnExp.setAttribute("style", "display:");
+    saveBtnExp.setAttribute("style", "display:flex");
   });
 
   const delBtnExp = document.createElement("button");
