@@ -12,6 +12,7 @@ let sumInc = 0;
 let sumOut = 0;
 
 function sumFn(arr) {
+  console.log(arr);
   return arr.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     0
@@ -84,8 +85,6 @@ addBtn.addEventListener("click", () => {
     inputAmount.setAttribute("style", "display:flex");
     let oldAmount = wartosc.amount;
 
-    console.log(oldAmount);
-
     saveBtn.addEventListener("click", () => {
       saveBtn.setAttribute("style", "display:none");
       editBtn.setAttribute("style", "display:flex");
@@ -93,17 +92,24 @@ addBtn.addEventListener("click", () => {
       cancelBtn.setAttribute("style", "display:none");
       delBtn.setAttribute("style", "display:flex");
       inputAmount.setAttribute("style", "display:none");
-      let oldAmount = wartosc.amount;
+      // let oldAmount = wartosc.amount;
       console.log(oldAmount);
-      przychody.push(-wartosc.amount);
-      sumInc = sumInc - wartosc.amount;
+      console.log(inputAmount.value);
+      przychody.push(-oldAmount);
+
+      // przychody.push(wartosc.amount);
+
+      // sumInc = sumInc - oldAmount;
       przychody.push(+inputAmount.value);
-      sumInc = sumInc + inputAmount.value;
+      // sumInc = sumInc + inputAmount.value;
       par.textContent = `${input.value} - ${inputAmount.value}`;
-      console.log(przychody);
+
       sumInc = sumFn(przychody);
+
       difrend();
-      console.log(przychody);
+
+      wartosc.amount = inputAmount.value;
+      sumaInc.innerText = `Suma przychodów: ${+sumInc} zł`;
     });
   });
   const cancelBtn = document.createElement("button");
@@ -118,8 +124,6 @@ addBtn.addEventListener("click", () => {
     input.setAttribute("style", "display:none");
     inputAmount.setAttribute("style", "display:none");
     editBtn.setAttribute("style", "display:flex");
-
-    console.log("klik2");
   });
   const delBtn = document.createElement("button");
   delBtn.textContent = "Usuń";
