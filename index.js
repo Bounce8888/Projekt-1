@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 //   id: "",
 // };
 
-const przychody = [];
+let przychody = [];
 console.log(przychody);
-const wydatki = [];
+let wydatki = [];
 let sumInc = 0;
 let sumOut = 0;
 
@@ -20,7 +20,7 @@ function sumFn(arr) {
 }
 
 function difrend() {
-  const sum = sumInc - sumOut;
+  let sum = sumInc - sumOut;
   const reszta = document.querySelector("#reszta");
   if (sum === 0) {
     reszta.innerHTML = "Nie masz nic do wydania";
@@ -84,7 +84,7 @@ addBtn.addEventListener("click", () => {
     delBtn.setAttribute("style", "display:none");
     input.setAttribute("style", "display:");
     inputAmount.setAttribute("style", "display:flex");
-    let oldAmount = wartosc.amount;
+    // let oldAmount = wartosc.amount;
 
     saveBtn.addEventListener("click", () => {
       saveBtn.setAttribute("style", "display:none");
@@ -100,7 +100,7 @@ addBtn.addEventListener("click", () => {
       sumInc = sumFn(przychody);
       difrend();
       wartosc.amount = inputAmount.value;
-      sumaInc.innerText = `Suma przychodów: ${+sumInc} zł`;
+      sumaInc.innerText = `Suma przychodów: ${+sumInc} zł.`;
     });
     oldAmount = 0;
   });
@@ -136,7 +136,7 @@ addBtn.addEventListener("click", () => {
     difrend();
   });
 
-  const sumaInc = document.getElementById("sumaP");
+  let sumaInc = document.getElementById("sumaP");
   sumaInc.innerText = `Suma przychodów: ${+sumInc} zł`;
 });
 // to jest koniec przychodu
@@ -191,7 +191,7 @@ addBtnExp.addEventListener("click", () => {
     delBtnExp.setAttribute("style", "display:none");
     input2.setAttribute("style", "display:");
     inputAmountExp.setAttribute("style", "display:flex");
-    let oldAmountExp = spend.amount;
+    // let oldAmountExp = spend.amount;
 
     saveBtnExp.addEventListener("click", () => {
       saveBtnExp.setAttribute("style", "display:none");
@@ -242,7 +242,7 @@ addBtnExp.addEventListener("click", () => {
     difrend();
   });
 
-  const sumaOut = document.getElementById("sumaW");
+  let sumaOut = document.getElementById("sumaW");
   sumaOut.innerText = `Suma wydatków ${+sumOut}`;
 
   //   delBtnExp.addEventListener("click", () => {
