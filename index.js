@@ -204,7 +204,7 @@ addBtnExp.addEventListener("click", () => {
       wydatki.push(-oldAmountExp);
       wydatki.push(+inputAmountExp.value);
       par2.textContent = `${input2.value} - ${inputAmountExp.value}`;
-      sumInc = sumFn(wydatki);
+      sumOut = sumFn(wydatki);
       difrend();
       spend.amount = inputAmountExp.value;
       sumaOut.innerText = `Suma wydatków ${+sumOut} zł.`;
