@@ -1,18 +1,10 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
-// let wartosc = {
-//   name: "",
-//   amount: "",
-//   id: "",
-// };
 
-let przychody = [];
-console.log(przychody);
-let wydatki = [];
+let inCome = [];
+let outCome = [];
 let sumInc = 0;
 let sumOut = 0;
-
 function sumFn(arr) {
-  console.log(arr);
   return arr.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     0
@@ -67,11 +59,6 @@ addBtn.addEventListener("click", () => {
   saveBtn.setAttribute("data-id", wartosc.id);
   saveBtn.setAttribute("style", "display:none");
   newLi.appendChild(saveBtn);
-  // saveBtn.addEventListener("click", () => {
-  //   // saveBtn.setAttribute("style", "display:none");
-  //   // editBtn.setAttribute("style", "display:");
-
-  // });
 
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edytuj";
@@ -84,7 +71,6 @@ addBtn.addEventListener("click", () => {
     delBtn.setAttribute("style", "display:none");
     input.setAttribute("style", "display:");
     inputAmount.setAttribute("style", "display:flex");
-    // let oldAmount = wartosc.amount;
 
     saveBtn.addEventListener("click", () => {
       saveBtn.setAttribute("style", "display:none");
@@ -94,10 +80,10 @@ addBtn.addEventListener("click", () => {
       delBtn.setAttribute("style", "display:flex");
       inputAmount.setAttribute("style", "display:none");
       let oldAmount = wartosc.amount;
-      przychody.push(-oldAmount);
-      przychody.push(+inputAmount.value);
+      inCome.push(-oldAmount);
+      inCome.push(+inputAmount.value);
       par.textContent = `${input.value} - ${inputAmount.value}`;
-      sumInc = sumFn(przychody);
+      sumInc = sumFn(inCome);
       difrend();
       wartosc.amount = inputAmount.value;
       sumaInc.innerText = `Suma przychodów: ${+sumInc} zł.`;
@@ -123,14 +109,14 @@ addBtn.addEventListener("click", () => {
   newLi.appendChild(delBtn);
 
   document.getElementById("incomeList").appendChild(newLi);
-  przychody.push(+wartosc.amount);
+  inCome.push(+wartosc.amount);
 
-  sumInc = sumFn(przychody);
+  sumInc = sumFn(inCome);
   difrend();
 
   delBtn.addEventListener("click", () => {
     document.getElementById("incomeList").removeChild(newLi);
-    przychody.push(-wartosc.amount);
+    inCome.push(-wartosc.amount);
     sumInc = sumInc - wartosc.amount;
     sumaInc.innerText = `Suma przychodów ${+sumInc} zł.`;
     difrend();
@@ -139,7 +125,6 @@ addBtn.addEventListener("click", () => {
   let sumaInc = document.getElementById("sumaP");
   sumaInc.innerText = `Suma przychodów: ${+sumInc} zł`;
 });
-// to jest koniec przychodu
 
 const addBtnExp = document.querySelector(".dodajW");
 addBtnExp.addEventListener("click", () => {
@@ -191,7 +176,6 @@ addBtnExp.addEventListener("click", () => {
     delBtnExp.setAttribute("style", "display:none");
     input2.setAttribute("style", "display:");
     inputAmountExp.setAttribute("style", "display:flex");
-    // let oldAmountExp = spend.amount;
 
     saveBtnExp.addEventListener("click", () => {
       saveBtnExp.setAttribute("style", "display:none");
@@ -201,10 +185,10 @@ addBtnExp.addEventListener("click", () => {
       delBtnExp.setAttribute("style", "display:flex");
       inputAmountExp.setAttribute("style", "display:none");
       let oldAmountExp = spend.amount;
-      wydatki.push(-oldAmountExp);
-      wydatki.push(+inputAmountExp.value);
+      outCome.push(-oldAmountExp);
+      outCome.push(+inputAmountExp.value);
       par2.textContent = `${input2.value} - ${inputAmountExp.value}`;
-      sumOut = sumFn(wydatki);
+      sumOut = sumFn(outCome);
       difrend();
       spend.amount = inputAmountExp.value;
       sumaOut.innerText = `Suma wydatków ${+sumOut} zł.`;
@@ -230,9 +214,9 @@ addBtnExp.addEventListener("click", () => {
   newLi2.appendChild(delBtnExp);
 
   document.getElementById("spendList").appendChild(newLi2);
-  wydatki.push(+spend.amount);
+  outCome.push(+spend.amount);
 
-  sumOut = +sumFn(wydatki);
+  sumOut = +sumFn(outCome);
   difrend();
 
   delBtnExp.addEventListener("click", () => {
@@ -244,21 +228,4 @@ addBtnExp.addEventListener("click", () => {
 
   let sumaOut = document.getElementById("sumaW");
   sumaOut.innerText = `Suma wydatków ${+sumOut}`;
-
-  //   delBtnExp.addEventListener("click", () => {
-  //     document.getElementById("spendList").removeChild(newLi2);
-
-  //     sumOut = +sumFn(wydatki);
-  //     difrend();
-  //   });
 });
-
-console.log("start");
-
-// if (sumInc > 2) {
-//   console.log("wiecej niż 2");
-// } else if (sumInc > 5) {
-//   console.log("wiecej niż 5");
-// } else {
-//   console.log("jest ponizej 2!");
-// }
