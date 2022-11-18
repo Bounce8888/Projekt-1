@@ -68,11 +68,11 @@ html {
 	width: 100%;
 	margin: auto;
 }
-.tabela {
+.table {
 	table-layout: fixed;
 	background-color: white;
 	display: flex;
-	justify-content: start;
+	justify-content: center;
 	margin: auto;
 	min-height: 50vh;
 	border-radius: 12px;

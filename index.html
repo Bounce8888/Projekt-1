@@ -14,70 +14,78 @@
     <title>Domowy budżet</title>
   </head>
   <body>
-    <center>
-      <img src="icons/icon3.png" alt="logo" />
-    </center>
-
-    <div class="main">
-      <center>
-        <h1 id="reszta">Nie masz nic do wydania :(</h1>
-      </center>
+    <div style="text-align: center">
+      <img src="icons/icon3.png" alt="logo" id="logo" />
     </div>
-    <div class="tabela" id="tabela">
+    <div class="main">
+      <h1 id="reszta">Nie masz nic do wydania :(</h1>
+    </div>
+    <div class="table" id="tabela">
       <table>
         <tr>
           <th>
             <h2>PRZYCHODY</h2>
-            <form id="test">
-              <input
-                type="text"
-                id="przychod"
-                class="name-input"
-                name="przychod"
-                required
-                minlength="4"
-                maxlength="20"
-                placeholder="Nazwa przychodu"
-              />
-              <input
-                type="number"
-                id="kwotaP"
-                name="kwotaP"
-                class="amount-input"
-                required
-                minlength="1"
-                maxlength="5"
-                size="5"
-                placeholder="Kwota"
-              />
-              <button type="button" class="dodajP">Dodaj</button>
+            <form class="form" method="post" id="test">
+              <div class="form-row">
+                <input
+                  type="text"
+                  id="przychod"
+                  class="name-input"
+                  name="przychod"
+                  required
+                  minlength="4"
+                  maxlength="20"
+                  placeholder="Nazwa przychodu"
+                />
+              </div>
+              <div class="form-row">
+                <input
+                  type="number"
+                  id="kwotaP"
+                  name="kwotaP"
+                  class="amount-input"
+                  required
+                  minlength="1"
+                  maxlength="5"
+                  size="5"
+                  min="0"
+                  placeholder="Kwota"
+                />
+              </div>
+
+              <button type="button" class="addP">Dodaj</button>
             </form>
           </th>
           <th>
             <h2>WYDATKI</h2>
-            <form id="test2">
-              <input
-                class="name-output"
-                type="text"
-                id="wydatek"
-                name="wydatek"
-                required
-                minlength="4"
-                maxlength="20"
-                size="20"
-                placeholder="Nazwa wydatku"
-              />
-              <input
-                class="amount-output"
-                type="number"
-                id="kwotaW"
-                name="kwotaW"
-                required
-                minlength="1"
-                maxlength="5"
-                size="5"
-                placeholder="Kwota"
-              />
+            <form class="form" method="post" id="test2">
+              <div class="form-row">
+                <input
+                  class="name-output"
+                  type="text"
+                  id="wydatek"
+                  name="wydatek"
+                  required
+                  minlength="4"
+                  maxlength="20"
+                  size="20"
+                  placeholder="Nazwa wydatku"
+                />
+              </div>
+              <div class="form-row">
+                <input
+                  class="amount-output"
+                  type="number"
+                  id="kwotaW"
+                  name="kwotaW"
+                  required
+                  min="0"
+                  minlength="1"
+                  maxlength="5"
+                  size="5"
+                  placeholder="Kwota"
+                />
+              </div>
               <button type="button" class="dodajW">Dodaj</button>
             </form>
           </th>
