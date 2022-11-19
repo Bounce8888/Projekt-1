@@ -1,13 +1,13 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
 let inCome = [];
-console.log(inCome);
+
 let outCome = [];
-console.log(outCome);
+
 let sumInc = 0;
-console.log(sumInc);
+
 let sumOut = 0;
-console.log(sumOut);
+
 function sumFn(arr) {
   return arr.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
@@ -27,36 +27,19 @@ function diffrend() {
   }
 }
 
-// let amountInputBox = document.getElementById("amount-input");
-
-// var invalidChars = ["-", "+", "e"];
-
-// amountInputBox.addEventListener("keydown", function (e) {
-//   if (invalidChars.includes(e.key)) {
-//     e.preventDefault();
-//   }
-// });
 const addBtn = document.querySelector(".addP");
 addBtn.addEventListener("click", () => {
   const nameInput = document.querySelector(".name-input");
   const nameVal = nameInput.value;
   const amountInput = document.querySelector(".amount-input");
   const amountVal = amountInput.value;
+  if (!nameVal) return;
+  if (!amountVal) return;
   let wallet = {
     name: nameVal,
     amount: amountVal,
     id: uuidv4(),
   };
-
-  // DLACZEGO NIE DZIAŁA OD RAZU tylko po kliknieciu
-  var invalidChars = ["-", "+", "e"];
-  amountInput.addEventListener("keydown", function (e) {
-    if (invalidChars.includes(e.key)) {
-      e.preventDefault();
-    }
-  });
-
-  //test
 
   const newLi = document.createElement("li");
   const par = document.createElement("p");
@@ -64,6 +47,7 @@ addBtn.addEventListener("click", () => {
   newLi.appendChild(par);
   const input = document.createElement("input");
   input.type = "text";
+
   input.setAttribute("data-id", wallet.id);
   input.setAttribute("style", "display:none");
   input.placeholder = `${wallet.name}`;
@@ -96,6 +80,7 @@ addBtn.addEventListener("click", () => {
     inputAmount.setAttribute("style", "display:flex");
 
     saveBtn.addEventListener("click", () => {
+      if (!inputAmount.value || Number(inputAmount.value) < 0) return;
       saveBtn.setAttribute("style", "display:none");
       editBtn.setAttribute("style", "display:flex");
       input.setAttribute("style", "display:none");
@@ -146,25 +131,19 @@ addBtn.addEventListener("click", () => {
   });
 
   let sumaInc = document.getElementById("sumaP");
-  console.log(sumInc);
+
   sumaInc.innerText = `Suma przychodów: ${+sumInc} zł`;
 });
 
-const addBtnExp = document.querySelector(".dodajW"); // dlaczego nie moge zmienić?!
+const addBtnExp = document.querySelector(".addW"); // dlaczego nie moge zmienić?!
 addBtnExp.addEventListener("click", () => {
   const nameExp = document.querySelector(".name-output");
   const nameValExp = nameExp.value;
   const exptInput = document.querySelector(".amount-output");
 
-  // DLACZEGO NIE DZIAŁA OD RAZU tylko po kliknieciu
-  // DLACZEGO NIE DZIAŁA OD RAZU tylko po kliknieciu
-  var invalidCharss = ["-", "+", "e"];
-  exptInput.addEventListener("keydown", function (e) {
-    if (invalidCharss.includes(e.key)) {
-      e.preventDefault();
-    }
-  });
   const expVal = exptInput.value;
+  if (!nameValExp) return;
+  if (!expVal) return;
   const spend = {
     name: nameValExp,
     amount: expVal,
@@ -211,6 +190,7 @@ addBtnExp.addEventListener("click", () => {
     inputAmountExp.setAttribute("style", "display:flex");
 
     saveBtnExp.addEventListener("click", () => {
+      if (!inputAmountExp.value || Number(inputAmountExp.value) < 0) return;
       saveBtnExp.setAttribute("style", "display:none");
       editBtnExp.setAttribute("style", "display:flex");
       input2.setAttribute("style", "display:none");
@@ -222,7 +202,6 @@ addBtnExp.addEventListener("click", () => {
       outCome.push(+inputAmountExp.value);
       par2.textContent = `${input2.value} - ${inputAmountExp.value}`;
       sumOut = sumFn(outCome);
-      console.log(sumOut + " SumOut");
       diffrend();
       spend.amount = inputAmountExp.value;
       sumaOut.innerText = `Suma wydatków ${+sumOut} zł.`;
@@ -249,17 +228,16 @@ addBtnExp.addEventListener("click", () => {
 
   document.getElementById("spendList").appendChild(newLi2);
   outCome.push(+spend.amount);
-  console.log(outCome + "outCome");
+
   sumOut = sumFn(outCome);
   diffrend();
-  console.log(sumOut);
 
   delBtnExp.addEventListener("click", () => {
     document.getElementById("spendList").removeChild(newLi2);
+    outCome.push(-spend.amount);
     sumOut = sumOut - spend.amount;
     sumaOut.innerText = `Suma wydatków ${+sumOut} zł.`;
     diffrend();
-    console.log(sumOut + " sumOut");
   });
 
   let sumaOut = document.getElementById("sumaW");

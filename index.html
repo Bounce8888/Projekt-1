@@ -32,7 +32,6 @@
                   id="przychod"
                   class="name-input"
                   name="przychod"
-                  required
                   minlength="4"
                   maxlength="20"
                   placeholder="Nazwa przychodu"
@@ -44,12 +43,12 @@
                   id="kwotaP"
                   name="kwotaP"
                   class="amount-input"
-                  required
                   minlength="1"
                   maxlength="5"
                   size="5"
                   min="0"
                   placeholder="Kwota"
+                  onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187"
                 />
               </div>
 
@@ -65,7 +64,6 @@
                   type="text"
                   id="wydatek"
                   name="wydatek"
-                  required
                   minlength="4"
                   maxlength="20"
                   size="20"
@@ -78,15 +76,15 @@
                   type="number"
                   id="kwotaW"
                   name="kwotaW"
-                  required
                   min="0"
                   minlength="1"
                   maxlength="5"
                   size="5"
                   placeholder="Kwota"
+                  onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187"
                 />
               </div>
-              <button type="button" class="dodajW">Dodaj</button>
+              <button type="button" class="addW">Dodaj</button>
             </form>
           </th>
         </tr>
