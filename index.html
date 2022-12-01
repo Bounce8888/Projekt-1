@@ -4,17 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="index.css" />
     <title>Domowy budżet</title>
   </head>
   <body>
-    <div style="text-align: center">
+    <div class="logo">
       <img src="icons/icon3.png" alt="logo" id="logo" />
     </div>
     <div class="main">
@@ -25,7 +26,8 @@
         <tr>
           <th>
             <h2>PRZYCHODY</h2>
-            <form class="form" method="post" id="test">
+
+            <form class="form" method="post">
               <div class="form-row">
                 <input
                   type="text"
@@ -48,7 +50,6 @@
                   size="5"
                   min="0"
                   placeholder="Kwota"
-                  onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187"
                 />
               </div>
 
@@ -57,7 +58,7 @@
           </th>
           <th>
             <h2>WYDATKI</h2>
-            <form class="form" method="post" id="test2">
+            <form class="form" method="post">
               <div class="form-row">
                 <input
                   class="name-output"
@@ -81,7 +82,6 @@
                   maxlength="5"
                   size="5"
                   placeholder="Kwota"
-                  onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187"
                 />
               </div>
               <button type="button" class="addW">Dodaj</button>
@@ -90,21 +90,21 @@
         </tr>
 
         <tr>
-          <th>
-            <h4 id="incomeList"></h4>
-          </th>
+          <td>
+            <h3 class="incomeList" id="incomeList"></h3>
+          </td>
 
-          <th>
-            <h4 id="spendList"></h4>
-          </th>
+          <td>
+            <h3 class="spendList" id="spendList"></h3>
+          </td>
         </tr>
         <tr id="PrzychodyWydatki">
-          <th>
-            <h3 id="sumaP">Suma przychodów: Brak</h3>
-          </th>
-          <th>
-            <h3 id="sumaW">Suma wydatków: Brak</h3>
-          </th>
+          <td>
+            <h3 class="incomeSum" id="incomeSum">Suma przychodów: Brak</h3>
+          </td>
+          <td>
+            <h3 class="outcomeSum" id="outcomeSum">Suma wydatków: Brak</h3>
+          </td>
         </tr>
       </table>
     </div>
